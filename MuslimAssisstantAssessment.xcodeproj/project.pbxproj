@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		5205503625B8762000ABE81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205503525B8762000ABE81B /* AppDelegate.swift */; };
 		5205503825B8762000ABE81B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205503725B8762000ABE81B /* SceneDelegate.swift */; };
-		5205503A25B8762000ABE81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205503925B8762000ABE81B /* ViewController.swift */; };
 		5205503F25B8762300ABE81B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5205503E25B8762300ABE81B /* Assets.xcassets */; };
 		5205504225B8762300ABE81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5205504025B8762300ABE81B /* LaunchScreen.storyboard */; };
 		5205504D25B8762300ABE81B /* MuslimAssisstantAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205504C25B8762300ABE81B /* MuslimAssisstantAssessmentTests.swift */; };
 		5205505825B8762300ABE81B /* MuslimAssisstantAssessmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205505725B8762300ABE81B /* MuslimAssisstantAssessmentUITests.swift */; };
+		5205507625B87D7F00ABE81B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205507525B87D7F00ABE81B /* APIManager.swift */; };
+		5205507E25B87DCC00ABE81B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205507D25B87DCC00ABE81B /* HomeVC.swift */; };
+		5205508325B89C9200ABE81B /* CountryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205508225B89C9200ABE81B /* CountryDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 		5205503225B8762000ABE81B /* MuslimAssisstantAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuslimAssisstantAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5205503525B8762000ABE81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5205503725B8762000ABE81B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5205503925B8762000ABE81B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5205503E25B8762300ABE81B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5205504125B8762300ABE81B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5205504325B8762300ABE81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +48,9 @@
 		5205505325B8762300ABE81B /* MuslimAssisstantAssessmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuslimAssisstantAssessmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5205505725B8762300ABE81B /* MuslimAssisstantAssessmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuslimAssisstantAssessmentUITests.swift; sourceTree = "<group>"; };
 		5205505925B8762300ABE81B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5205507525B87D7F00ABE81B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		5205507D25B87DCC00ABE81B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		5205508225B89C9200ABE81B /* CountryDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,12 @@
 		5205503425B8762000ABE81B /* MuslimAssisstantAssessment */ = {
 			isa = PBXGroup;
 			children = (
+				5205507425B87D6D00ABE81B /* Managers */,
+				5205507325B87D2E00ABE81B /* Models */,
+				5205507225B87D2400ABE81B /* Views */,
+				5205507125B87D1500ABE81B /* Controllers */,
 				5205503525B8762000ABE81B /* AppDelegate.swift */,
 				5205503725B8762000ABE81B /* SceneDelegate.swift */,
-				5205503925B8762000ABE81B /* ViewController.swift */,
 				5205503E25B8762300ABE81B /* Assets.xcassets */,
 				5205504025B8762300ABE81B /* LaunchScreen.storyboard */,
 				5205504325B8762300ABE81B /* Info.plist */,
@@ -123,6 +130,37 @@
 				5205505925B8762300ABE81B /* Info.plist */,
 			);
 			path = MuslimAssisstantAssessmentUITests;
+			sourceTree = "<group>";
+		};
+		5205507125B87D1500ABE81B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5205507D25B87DCC00ABE81B /* HomeVC.swift */,
+				5205508225B89C9200ABE81B /* CountryDetailsVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5205507225B87D2400ABE81B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5205507325B87D2E00ABE81B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5205507425B87D6D00ABE81B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5205507525B87D7F00ABE81B /* APIManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5205503A25B8762000ABE81B /* ViewController.swift in Sources */,
+				5205507625B87D7F00ABE81B /* APIManager.swift in Sources */,
+				5205507E25B87DCC00ABE81B /* HomeVC.swift in Sources */,
+				5205508325B89C9200ABE81B /* CountryDetailsVC.swift in Sources */,
 				5205503625B8762000ABE81B /* AppDelegate.swift in Sources */,
 				5205503825B8762000ABE81B /* SceneDelegate.swift in Sources */,
 			);
