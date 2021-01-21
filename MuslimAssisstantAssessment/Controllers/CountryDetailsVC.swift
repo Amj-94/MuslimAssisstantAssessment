@@ -57,23 +57,29 @@ class CountryDetailsVC: UIViewController {
     }
     
     func addCasesView(){
-        view.addSubview(casesStatisticView)
-        casesStatisticView.anchor(top: svLabelsStack.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 20, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
+        view.addSubview(casesCardView)
+        casesCardView.anchor(top: svLabelsStack.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 20, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
         
-//        let ss = [Statistic(title: "Total", detail: "32165465"), Statistic(title: "Active", detail: "654654")]
-//
-//        casesStatisticView.statistics = ss
-//        casesStatisticView.setUpStatisticDetailViews()
+        let titles = ["active", "critical", "recovered", "total"]
+        casesCardView.titles = titles
+        casesCardView.setUpLayOut()
         
     }
     
     func addDeathsTestsStatisticsView(){
-        svStatisticsStack.addArrangedSubview(deathsStatisticView)
-        svStatisticsStack.addArrangedSubview(testsStatisticView)
+        svCardsStack.addArrangedSubview(deathsCardView)
+        svCardsStack.addArrangedSubview(testsCardView)
         
-        view.addSubview(svStatisticsStack)
-        svStatisticsStack.anchor(top: casesStatisticView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 10, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
+        view.addSubview(svCardsStack)
+        svCardsStack.anchor(top: casesCardView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 10, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
         
+        let deathCardtitles = ["new", "total"]
+        deathsCardView.titles = deathCardtitles
+        deathsCardView.setUpLayOut()
+        
+        let testsCardTitles = ["total"]
+        testsCardView.titles = testsCardTitles
+        testsCardView.setUpLayOut()
     }
     
     // MARK: -UIElements
@@ -96,29 +102,29 @@ class CountryDetailsVC: UIViewController {
         return sv
     }()
     
-    let casesStatisticView: CountryStatisticView = {
-        let vi = CountryStatisticView()
+    let casesCardView: StatisticCardView = {
+        let vi = StatisticCardView()
         vi.layer.cornerRadius = 10
         vi.layer.borderWidth = 0.5
         vi.layer.borderColor = UIColor.lightGray.cgColor
         return vi
     }()
     
-    let deathsStatisticView: CountryStatisticView = {
-        let vi = CountryStatisticView()
+    let deathsCardView: StatisticCardView = {
+        let vi = StatisticCardView()
         vi.layer.borderWidth = 0.5
         vi.layer.borderColor = UIColor.lightGray.cgColor
         return vi
     }()
     
-    let testsStatisticView: CountryStatisticView = {
-        let vi = CountryStatisticView()
+    let testsCardView: StatisticCardView = {
+        let vi = StatisticCardView()
         vi.layer.borderWidth = 0.5
         vi.layer.borderColor = UIColor.lightGray.cgColor
         return vi
     }()
     
-    let svStatisticsStack: UIStackView = {
+    let svCardsStack: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
         sv.spacing = 16

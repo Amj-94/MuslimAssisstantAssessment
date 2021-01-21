@@ -7,20 +7,16 @@
 
 import UIKit
 
-struct Statistic {
-    let title: String
-    let detail: String
-}
-
-class CountryStatisticView: UIView {
+class StatisticCardView: UIView {
     // MARK: -Properties
     var label: String?
-    var statistics: [Statistic]?
+    var titles: [String]?
+    var details: [String]?
     
     // MARK: -Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpLayOut()
+//        setUpLayOut()
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +25,7 @@ class CountryStatisticView: UIView {
     
     // MARK: -setUpLayOut
     func setUpLayOut(){
-        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         setUpTopView()
         setUpStatisticDetailViews()
     }
@@ -40,30 +36,30 @@ class CountryStatisticView: UIView {
         viTopView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         
         viTopView.addSubview(lbStatisticLabel)
-        lbStatisticLabel.anchor(top: viTopView.topAnchor, left: viTopView.leftAnchor, bottom: nil, right: nil, topConst: 6, leftConst: 6, bottomConst: 0, rightConst: 0, width: 0, height: 0)
+        lbStatisticLabel.anchor(top: viTopView.topAnchor, left: viTopView.leftAnchor, bottom: nil, right: nil, topConst: 6, leftConst: 8, bottomConst: 0, rightConst: 0, width: 0, height: 0)
         lbStatisticLabel.centerY(inView: viTopView)
         
     }
     
     func setUpStatisticDetailViews(){
-        if let statistics = statistics{
-            var views = [UIView]()
-            for statistic in statistics {
-                let statisticDetail = StatisticDetailView()
-                statisticDetail.statistic = statistic
-                statisticDetail.setUpLayOut()
-                views.append(statisticDetail)
-            }
-            
-            let detailsStack = UIStackView(arrangedSubviews: views)
-            detailsStack.axis = .horizontal
-            detailsStack.spacing = 6
-            detailsStack.distribution = .fillEqually
-            addSubview(detailsStack)
-            detailsStack.centerX(inView: self)
-            detailsStack.centerY(inView: self)
-            detailsStack.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, topConst: 0, leftConst: 8, bottomConst: 0, rightConst: -6, width: 0, height: 0)
+        guard let titles = titles else { return }
+        var views = [UIView]()
+        for title in titles {
+            let detailView = StatisticCardDetailView()
+            detailView.title = title
+            detailView.setUpLayOut()
+            views.append(detailView)
         }
+            
+        let detailsStack = UIStackView(arrangedSubviews: views)
+        detailsStack.axis = .horizontal
+        detailsStack.spacing = 6
+        detailsStack.distribution = .fillEqually
+        addSubview(detailsStack)
+        detailsStack.centerX(inView: self)
+        detailsStack.centerY(inView: self)
+        detailsStack.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, topConst: 0, leftConst: 8, bottomConst: 0, rightConst: -8, width: 0, height: 0)
+        
     }
     
     func addSeparetor() -> UIView {

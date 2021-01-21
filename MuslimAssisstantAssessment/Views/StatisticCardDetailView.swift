@@ -7,9 +7,11 @@
 
 import UIKit
 
-class StatisticDetailView: UIView {
+class StatisticCardDetailView: UIView {
     // MARK: -properties
-    var statistic: Statistic?
+    var title: String?
+    var detail: String?
+    
     
     // MARK: -init
     override init(frame: CGRect) {
@@ -32,21 +34,20 @@ class StatisticDetailView: UIView {
         stack.centerX(inView: self)
         stack.centerY(inView: self)
         
-        lbTitle.text = statistic?.title
-        lbDetail.text = statistic?.detail
+        lbTitle.text = title ?? ""
+        lbDetail.text = detail ?? ""
         
     }
     
     // MARK: -UIElements
     let lbTitle: UILabel = {
         let lb = UILabel()
-//        lb.text = "Test Title"
         return lb
     }()
     
     let lbDetail: UILabel = {
         let lb = UILabel()
-//        lb.text = "Test Detail"
+        lb.font = UIFont.systemFont(ofSize: 8)
         return lb
     }()
     
