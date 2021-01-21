@@ -12,6 +12,7 @@ class CountryDetailsVC: UIViewController {
     var country: String?
     var countryStatistics: Response? {
         didSet {
+            setUplbInformationUpdatedText()
             fillStatistics()
         }
     }
@@ -76,6 +77,7 @@ class CountryDetailsVC: UIViewController {
         svLabelsStack.addArrangedSubview(lbInformationUpdated)
         view.addSubview(svLabelsStack)
         svLabelsStack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConst: 60, leftConst: 16, bottomConst: 0, rightConst: 0, width: 300, height: 50)
+        setUplbCountryNameText()
     }
     
     func addCasesView(){
@@ -104,16 +106,41 @@ class CountryDetailsVC: UIViewController {
         testsCardView.setUpLayOut()
     }
     
+    func setUplbCountryNameText() {
+        let attributString = NSMutableAttributedString(string: "COVID-19 Statistics in ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.gray])
+        
+        
+        guard let country = country else { return }
+        
+        attributString.append(NSMutableAttributedString(string: country, attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.gray]))
+        lbCountryName.attributedText = attributString
+    }
+    
+    func setUplbInformationUpdatedText(){
+        guard let date = countryStatistics?.time else { return }
+        
+        // The date returned from the api does'nt conform to Swift Date
+        // so I converted it to Swift Date then converted it to String
+        
+        // another format: "yyyy-MM-dd'T'HH:mm:ssZ"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        if let swiftDate = formatter.date(from:date) {
+            lbInformationUpdated.text! += formatter.string(from: swiftDate)
+        } else {
+            lbInformationUpdated.text! += formatter.string(from: Date())
+        }
+    }
+    
     // MARK: -UIElements
     let lbCountryName: UILabel = {
         let lb = UILabel()
-        lb.text = "COVID 19 statistic in SADGSAG"
         return lb
     }()
     
     let lbInformationUpdated: UILabel = {
         let lb = UILabel()
-        lb.text = "last update: \(Date())"
+        lb.text = "last update: "
         return lb
     }()
     

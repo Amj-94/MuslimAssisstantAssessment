@@ -32,7 +32,7 @@ struct Response: Codable {
     let cases: Case
     let deaths: Death
     let tests: Test
-    
+    let time: String
 }
 
 struct CountryStatistics: Codable {

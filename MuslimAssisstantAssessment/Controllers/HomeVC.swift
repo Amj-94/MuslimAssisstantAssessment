@@ -66,9 +66,7 @@ extension HomeVC {
         vc.country = countries?[indexPath.row] ?? ""
         if #available(iOS 13.0, *) {
             vc.isModalInPresentation = true
-        } else {
-            // Fallback on earlier versions
-        }
+        } 
         present(vc, animated: true, completion: nil)
 //        navigationController?.pushViewController(vc, animated: true)
     }

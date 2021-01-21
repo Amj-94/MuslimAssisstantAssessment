@@ -50,9 +50,10 @@ class StatisticCardView: UIView {
         viTopView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topConst: 0, leftConst: 0, bottomConst: 0, rightConst: 0, width: 0, height: 0)
         viTopView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25).isActive = true
         
-        viTopView.addSubview(lbStatisticLabel)
-        lbStatisticLabel.anchor(top: viTopView.topAnchor, left: viTopView.leftAnchor, bottom: nil, right: nil, topConst: 6, leftConst: 8, bottomConst: 0, rightConst: 0, width: 0, height: 0)
-        lbStatisticLabel.centerY(inView: viTopView)
+        viTopView.addSubview(lbCardLabel)
+        lbCardLabel.anchor(top: viTopView.topAnchor, left: viTopView.leftAnchor, bottom: nil, right: nil, topConst: 6, leftConst: 8, bottomConst: 0, rightConst: 0, width: 0, height: 0)
+        lbCardLabel.centerY(inView: viTopView)
+        lbCardLabel.text = label ?? ""
         
     }
     
@@ -75,7 +76,6 @@ class StatisticCardView: UIView {
         detailsStack.centerX(inView: viContainerView)
         detailsStack.centerY(inView: viContainerView)
         detailsStack.anchor(top: nil, left: viContainerView.leftAnchor, bottom: nil, right: viContainerView.rightAnchor, topConst: 0, leftConst: 8, bottomConst: 0, rightConst: -8, width: 0, height: 0)
-        
     }
     
     func addSeparetor() -> UIView {
@@ -92,9 +92,8 @@ class StatisticCardView: UIView {
         return vi
     }()
     
-    let lbStatisticLabel: UILabel = {
+    let lbCardLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "asdfuhsa"
         return lb
     }()
     
