@@ -57,6 +57,8 @@ class StatisticCardView: UIView {
     }
     
     func setUpStatisticDetailViews(){
+        addSubview(viContainerView)
+        viContainerView.anchor(top: viTopView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConst: 0, leftConst: 0, bottomConst: 0, rightConst: 0, width: 0, height: 0)
         guard let titles = titles else { return }
         for title in titles {
             let detailView = StatisticCardDetailView()
@@ -69,10 +71,10 @@ class StatisticCardView: UIView {
         detailsStack.axis = .horizontal
         detailsStack.spacing = 6
         detailsStack.distribution = .fillEqually
-        addSubview(detailsStack)
-        detailsStack.centerX(inView: self)
-        detailsStack.centerY(inView: self)
-        detailsStack.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, topConst: 0, leftConst: 8, bottomConst: 0, rightConst: -8, width: 0, height: 0)
+        viContainerView.addSubview(detailsStack)
+        detailsStack.centerX(inView: viContainerView)
+        detailsStack.centerY(inView: viContainerView)
+        detailsStack.anchor(top: nil, left: viContainerView.leftAnchor, bottom: nil, right: viContainerView.rightAnchor, topConst: 0, leftConst: 8, bottomConst: 0, rightConst: -8, width: 0, height: 0)
         
     }
     
@@ -94,5 +96,10 @@ class StatisticCardView: UIView {
         let lb = UILabel()
         lb.text = "asdfuhsa"
         return lb
+    }()
+    
+    let viContainerView: UIView = {
+        let vi = UIView()
+        return vi
     }()
 }
