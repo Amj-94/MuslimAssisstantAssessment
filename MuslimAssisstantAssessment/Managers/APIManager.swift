@@ -69,7 +69,6 @@ class APIManager {
         components.path = "/statistics"
         let queryItemCountry = URLQueryItem(name: "country", value: countryName)
         components.queryItems = [queryItemCountry]
-        print(components.url!)
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"

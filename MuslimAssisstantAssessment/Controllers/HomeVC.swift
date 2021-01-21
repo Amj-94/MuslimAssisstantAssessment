@@ -45,7 +45,7 @@ class HomeVC: UITableViewController {
         tableView.rowHeight = 60
     }
     
-    // MARK: -Controls
+    
     
 }
 
@@ -64,6 +64,12 @@ extension HomeVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = CountryDetailsVC()
         vc.country = countries?[indexPath.row] ?? ""
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            vc.isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
+        present(vc, animated: true, completion: nil)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
