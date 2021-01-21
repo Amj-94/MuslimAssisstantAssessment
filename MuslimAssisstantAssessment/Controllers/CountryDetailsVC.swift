@@ -10,7 +10,7 @@ import UIKit
 class CountryDetailsVC: UIViewController {
     // MARK: -Properties
     var country: String?
-    var countryStatistics: CountryStatistics? {
+    var countryStatistics: Response? {
         didSet {
             fillStatistics()
         }
@@ -29,7 +29,7 @@ class CountryDetailsVC: UIViewController {
         APIManager.shared.getCountryDetails(countryName: country) { [weak self](res) in
             switch res {
             case .success(let countryStatistics):
-                self?.countryStatistics = countryStatistics
+                self?.countryStatistics = countryStatistics.response[0]
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -38,7 +38,29 @@ class CountryDetailsVC: UIViewController {
     
     // MARK: -Helpers
     func fillStatistics(){
-        
+        guard let response = countryStatistics else { return }
+        casesCardView.details = fillCasesDetails(object: response)
+        deathsCardView.details = fillDethesDetails(object: response)
+        testsCardView.details = fillTestsDetails(object: response)
+    }
+    
+    func fillCasesDetails(object: Response) -> [String] {
+        let active = String(object.cases.active)
+        let critical = String(object.cases.critical)
+        let recovered = String(object.cases.recovered)
+        let total = String(object.cases.total)
+        return [active, critical, recovered, total]
+    }
+    
+    func fillDethesDetails(object: Response) -> [String] {
+        let new = object.deaths.new
+        let total = String(object.deaths.total)
+        return [new, total]
+    }
+    
+    func fillTestsDetails(object: Response) -> [String] {
+        let total = String(object.tests.total)
+        return [total]
     }
     
     // MARK: -setUpLayOut
@@ -46,7 +68,7 @@ class CountryDetailsVC: UIViewController {
         view.backgroundColor = .white
         configureLabelsStack()
         addCasesView()
-        addDeathsTestsStatisticsView()
+        addDeathsTestsView()
     }
     
     func configureLabelsStack(){
@@ -66,7 +88,7 @@ class CountryDetailsVC: UIViewController {
         
     }
     
-    func addDeathsTestsStatisticsView(){
+    func addDeathsTestsView(){
         svCardsStack.addArrangedSubview(deathsCardView)
         svCardsStack.addArrangedSubview(testsCardView)
         

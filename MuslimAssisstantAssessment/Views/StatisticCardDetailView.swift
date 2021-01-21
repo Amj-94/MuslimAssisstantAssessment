@@ -10,7 +10,11 @@ import UIKit
 class StatisticCardDetailView: UIView {
     // MARK: -properties
     var title: String?
-    var detail: String?
+    var detail: String? {
+        didSet {
+            fillLabel()
+        }
+    }
     
     
     // MARK: -init
@@ -20,6 +24,12 @@ class StatisticCardDetailView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: -Helpers
+    func fillLabel(){
+        guard let detail = detail else { return }
+        lbDetail.text = detail
     }
     
     // MARK: -setUpLayOut
@@ -42,12 +52,15 @@ class StatisticCardDetailView: UIView {
     // MARK: -UIElements
     let lbTitle: UILabel = {
         let lb = UILabel()
+        lb.textAlignment = .center
+        lb.font = UIFont.systemFont(ofSize: 14)
         return lb
     }()
     
     let lbDetail: UILabel = {
         let lb = UILabel()
-        lb.font = UIFont.systemFont(ofSize: 8)
+        lb.textAlignment = .center
+        lb.font = UIFont.boldSystemFont(ofSize: 16)
         return lb
     }()
     

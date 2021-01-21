@@ -11,7 +11,12 @@ class StatisticCardView: UIView {
     // MARK: -Properties
     var label: String?
     var titles: [String]?
-    var details: [String]?
+    var details: [String]? {
+        didSet {
+            fillDetails()
+        }
+    }
+    var detailsViews = [StatisticCardDetailView]()
     
     // MARK: -Init
     override init(frame: CGRect) {
@@ -21,6 +26,16 @@ class StatisticCardView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Helpers
+    func fillDetails(){
+        guard let details = details else { return }
+        if details.count == detailsViews.count {
+            for i in 0...detailsViews.count - 1{
+                detailsViews[i].detail = details[i]
+            }
+        }
     }
     
     // MARK: -setUpLayOut
@@ -43,15 +58,14 @@ class StatisticCardView: UIView {
     
     func setUpStatisticDetailViews(){
         guard let titles = titles else { return }
-        var views = [UIView]()
         for title in titles {
             let detailView = StatisticCardDetailView()
             detailView.title = title
             detailView.setUpLayOut()
-            views.append(detailView)
+            detailsViews.append(detailView)
         }
             
-        let detailsStack = UIStackView(arrangedSubviews: views)
+        let detailsStack = UIStackView(arrangedSubviews: detailsViews)
         detailsStack.axis = .horizontal
         detailsStack.spacing = 6
         detailsStack.distribution = .fillEqually
