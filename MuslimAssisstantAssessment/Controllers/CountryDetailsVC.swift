@@ -9,11 +9,15 @@ import UIKit
 
 class CountryDetailsVC: UIViewController {
     // MARK: -Properties
+    var country: String = ""
     
     // MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLayOut()
+        APIManager.shared.getCountryDetails(countryName: country) { (res) in
+            
+        }
     }
     
     // MARK: -setUpLayOut

@@ -46,8 +46,8 @@ class APIManager {
                 if let unwrappedData = data{
                     do {
                         if let json = try? JSONSerialization.jsonObject(with: unwrappedData, options: .mutableContainers) as? [String : Any] {
-                            let countrirs = json["response"] as! [String]
-                            completion(.success(countrirs))
+                            let countries = json["response"] as! [String]
+                            completion(.success(countries))
                         } else {
                             let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedData)
                                 completion(.failure(errorResponse))
@@ -60,7 +60,62 @@ class APIManager {
             }
         }.resume()
     }
+    
+    func getCountryDetails(countryName: String, completion: @escaping(Result<CountryStatistics, Error>) -> Void) {
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "covid-193.p.rapidapi.com"
+        components.path = "/statistics"
+        let queryItemCountry = URLQueryItem(name: "country", value: countryName)
+        components.queryItems = [queryItemCountry]
+        print(components.url!)
+        
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = [
+            "x-rapidapi-host" : rapidapiHost,
+            "x-rapidapi-key" : apiKey,
+        ]
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                
+                guard let unwrappedResponse = response as? HTTPURLResponse else {
+                    completion(.failure(NetWorkManagerError.badResponse))
+                    return
+                }
+                switch unwrappedResponse.statusCode {
+                case 200 ..< 300 :
+                    print("Success")
+                default:
+                    print("failure")
+                }
+                
+                if let unwrappedError = error {
+                    completion(.failure(unwrappedError))
+                    return
+                }
+                if let unwrappedData = data{
+                    do {
+                        if let json = try? JSONDecoder().decode(CountryStatistics.self, from: unwrappedData) {
+                            completion(.success(json))
+                        } else {
+                            let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: unwrappedData)
+                            completion(.failure(errorResponse))
+                        }
+                    } catch let decodingerr {
+                        completion(.failure(decodingerr))
+                    }
+                }
+                
+            }
+        }.resume()
+        
+        
+    }
 }
+
+
 
 enum NetWorkManagerError: Error {
     case badURL

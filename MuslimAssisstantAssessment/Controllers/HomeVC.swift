@@ -63,6 +63,7 @@ extension HomeVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = CountryDetailsVC()
+        vc.country = countries?[indexPath.row] ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -17,6 +17,7 @@
 		5205507E25B87DCC00ABE81B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205507D25B87DCC00ABE81B /* HomeVC.swift */; };
 		5205508325B89C9200ABE81B /* CountryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205508225B89C9200ABE81B /* CountryDetailsVC.swift */; };
 		5205508825B8A49F00ABE81B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5205508725B8A49F00ABE81B /* Constants.swift */; };
+		5216FE3525B8B6AB00ECA594 /* CountryStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE3425B8B6AB00ECA594 /* CountryStatistics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		5205507D25B87DCC00ABE81B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5205508225B89C9200ABE81B /* CountryDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsVC.swift; sourceTree = "<group>"; };
 		5205508725B8A49F00ABE81B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5216FE3425B8B6AB00ECA594 /* CountryStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryStatistics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		5205507325B87D2E00ABE81B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5216FE3425B8B6AB00ECA594 /* CountryStatistics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				5205507E25B87DCC00ABE81B /* HomeVC.swift in Sources */,
 				5205508325B89C9200ABE81B /* CountryDetailsVC.swift in Sources */,
 				5205503625B8762000ABE81B /* AppDelegate.swift in Sources */,
+				5216FE3525B8B6AB00ECA594 /* CountryStatistics.swift in Sources */,
 				5205503825B8762000ABE81B /* SceneDelegate.swift in Sources */,
 				5205508825B8A49F00ABE81B /* Constants.swift in Sources */,
 			);
