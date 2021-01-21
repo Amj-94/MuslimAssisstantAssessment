@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         let navController = UINavigationController(rootViewController: HomeVC())
-        navController.navigationBar.barStyle = .black
+        
         
         window?.rootViewController = navController
     }
