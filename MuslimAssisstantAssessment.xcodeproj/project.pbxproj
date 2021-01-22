@@ -21,6 +21,8 @@
 		5216FE3E25B940FF00ECA594 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE3D25B940FF00ECA594 /* Extensions.swift */; };
 		5216FE4625B9441100ECA594 /* StatisticCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE4525B9441100ECA594 /* StatisticCardView.swift */; };
 		5216FE4B25B95B0F00ECA594 /* StatisticCardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE4A25B95B0F00ECA594 /* StatisticCardDetailView.swift */; };
+		5216FE5625B9F9AA00ECA594 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE5525B9F9AA00ECA594 /* APIManagerProtocol.swift */; };
+		5216FE5C25B9FAC200ECA594 /* MockAPIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216FE5B25B9FAC200ECA594 /* MockAPIManger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		5216FE3D25B940FF00ECA594 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5216FE4525B9441100ECA594 /* StatisticCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCardView.swift; sourceTree = "<group>"; };
 		5216FE4A25B95B0F00ECA594 /* StatisticCardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCardDetailView.swift; sourceTree = "<group>"; };
+		5216FE5525B9F9AA00ECA594 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
+		5216FE5B25B9FAC200ECA594 /* MockAPIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 		5205504B25B8762300ABE81B /* MuslimAssisstantAssessmentTests */ = {
 			isa = PBXGroup;
 			children = (
+				5216FE5A25B9FAA900ECA594 /* Mocks */,
 				5205504C25B8762300ABE81B /* MuslimAssisstantAssessmentTests.swift */,
 				5205504E25B8762300ABE81B /* Info.plist */,
 			);
@@ -174,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				5205507525B87D7F00ABE81B /* APIManager.swift */,
+				5216FE5525B9F9AA00ECA594 /* APIManagerProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -184,6 +190,14 @@
 				5216FE3D25B940FF00ECA594 /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5216FE5A25B9FAA900ECA594 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5216FE5B25B9FAC200ECA594 /* MockAPIManger.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +334,7 @@
 				5205507E25B87DCC00ABE81B /* HomeVC.swift in Sources */,
 				5216FE4625B9441100ECA594 /* StatisticCardView.swift in Sources */,
 				5205508325B89C9200ABE81B /* CountryDetailsVC.swift in Sources */,
+				5216FE5625B9F9AA00ECA594 /* APIManagerProtocol.swift in Sources */,
 				5216FE3E25B940FF00ECA594 /* Extensions.swift in Sources */,
 				5205503625B8762000ABE81B /* AppDelegate.swift in Sources */,
 				5216FE3525B8B6AB00ECA594 /* CountryStatistics.swift in Sources */,
@@ -332,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5216FE5C25B9FAC200ECA594 /* MockAPIManger.swift in Sources */,
 				5205504D25B8762300ABE81B /* MuslimAssisstantAssessmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

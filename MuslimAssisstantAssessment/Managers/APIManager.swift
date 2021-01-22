@@ -13,6 +13,11 @@ class APIManager {
     
     let baseURL = "https://covid-193.p.rapidapi.com/"
     
+    
+}
+
+// MARK: -Extension APIManagerProtocol
+extension APIManager: APIManagerProtocol {
     func getCountries(completion: @escaping(Result<[String], Error>) -> Void) {
         guard let url = URL(string: baseURL + "countries") else {
             completion(.failure(NetWorkManagerError.badURL))
@@ -109,8 +114,6 @@ class APIManager {
                 
             }
         }.resume()
-        
-        
     }
 }
 
