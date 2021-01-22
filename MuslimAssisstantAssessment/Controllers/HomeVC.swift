@@ -7,6 +7,14 @@
 
 import UIKit
 
+// There is one warning in this Project which is:
+// nw_protocol_get_quic_image_block_invoke dlopen libquic failed
+// I am getting this warning since I updated to Xcode12
+// I serched the internet about this warning and found many developers are agetting
+// the same warning(on applu forum and stackoverflow)
+// current Xcode version: 12.2
+// current MacOS: macOS Big Sur 11.1
+
 class HomeVC: UITableViewController {
     // MARK: -properties
     var countries: [String]? {
@@ -84,7 +92,7 @@ class HomeVC: UITableViewController {
     
     func setUpTableView() {
         tableView.tableFooterView = UIView()
-//        tableView.backgroundColor = .white
+        tableView.backgroundColor = backGroundColor
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: COUNTRY_CELLID)
         tableView.rowHeight = 60
     }

@@ -7,6 +7,12 @@
 
 import Foundation
 
+// since the response type from the server is not known, I had to write the network
+// manager like this and to cast the result one time as [String] and the other as
+// CountryStatistics, but in case we know the server response I prefer to make the
+// functions like this:
+// func getX(endPoint: String, completion: @escaping(Result<'any decodable struct', Error>) -> Void )
+
 class APIManager {
     
     static let shared = APIManager()
