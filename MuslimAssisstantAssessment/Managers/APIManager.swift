@@ -12,8 +12,6 @@ class APIManager {
     static let shared = APIManager()
     
     let baseURL = "https://covid-193.p.rapidapi.com/"
-    
-    
 }
 
 // MARK: -Extension APIManagerProtocol

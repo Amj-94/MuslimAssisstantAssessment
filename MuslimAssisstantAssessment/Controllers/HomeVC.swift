@@ -70,7 +70,7 @@ class HomeVC: UITableViewController {
         definesPresentationContext = false
         
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = .systemPurple
+            textfield.textColor = .black
             textfield.backgroundColor = .white
         }
         searchController.searchResultsUpdater = self
@@ -91,10 +91,7 @@ extension HomeVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = CountryDetailsVC()
-        vc.country = countries?[indexPath.row] ?? ""
-        if #available(iOS 13.0, *) {
-            vc.isModalInPresentation = true
-        } 
+        vc.country = inSerachMode ? filteredCountries?[indexPath.row] ?? "" : countries?[indexPath.row] ?? ""
         present(vc, animated: true, completion: nil)
     }
 }

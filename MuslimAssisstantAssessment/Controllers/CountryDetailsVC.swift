@@ -22,7 +22,7 @@ class CountryDetailsVC: UIViewController {
         super.viewDidLoad()
         setUpLayOut()
         fetchCountryDetails()
-    }
+    }    
     
     // MARK: -APICalls
     func fetchCountryDetails(){
@@ -46,15 +46,30 @@ class CountryDetailsVC: UIViewController {
     }
     
     func fillCasesDetails(object: Response) -> [String] {
-        let active = String(object.cases.active)
-        let critical = String(object.cases.critical)
-        let recovered = String(object.cases.recovered)
-        let total = String(object.cases.total)
-        return [active, critical, recovered, total]
+        var values = [String]()
+        if let active = object.cases.active {
+            values.append(String(active))
+        } else {
+            values.append("NA")
+        }
+        
+        if let critical = object.cases.critical {
+            values.append(String(critical))
+        } else {
+            values.append("NA")
+        }
+        
+        if let recovered = object.cases.recovered {
+            values.append(String(recovered))
+        } else {
+            values.append("NA")
+        }
+        values.append(String(object.cases.total))
+        return values
     }
     
     func fillDethesDetails(object: Response) -> [String] {
-        let new = object.deaths.new
+        let new = object.deaths.new ?? "NA"
         let total = String(object.deaths.total)
         return [new, total]
     }
@@ -76,7 +91,7 @@ class CountryDetailsVC: UIViewController {
         svLabelsStack.addArrangedSubview(lbCountryName)
         svLabelsStack.addArrangedSubview(lbInformationUpdated)
         view.addSubview(svLabelsStack)
-        svLabelsStack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConst: 60, leftConst: 16, bottomConst: 0, rightConst: 0, width: 300, height: 50)
+        svLabelsStack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 60, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: 50)
         setUplbCountryNameText()
     }
     
@@ -85,6 +100,7 @@ class CountryDetailsVC: UIViewController {
         casesCardView.anchor(top: svLabelsStack.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 20, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
         
         let titles = ["active", "critical", "recovered", "total"]
+        casesCardView.label = "Cases"
         casesCardView.titles = titles
         casesCardView.setUpLayOut()
         
@@ -98,21 +114,23 @@ class CountryDetailsVC: UIViewController {
         svCardsStack.anchor(top: casesCardView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConst: 10, leftConst: 16, bottomConst: 0, rightConst: -16, width: 0, height: view.frame.height * 0.2)
         
         let deathCardtitles = ["new", "total"]
+        deathsCardView.label = "Deathes"
         deathsCardView.titles = deathCardtitles
         deathsCardView.setUpLayOut()
         
         let testsCardTitles = ["total"]
+        testsCardView.label = "Tests"
         testsCardView.titles = testsCardTitles
         testsCardView.setUpLayOut()
     }
     
     func setUplbCountryNameText() {
-        let attributString = NSMutableAttributedString(string: "COVID-19 Statistics in ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.gray])
+        let attributString = NSMutableAttributedString(string: "COVID-19 Statistics in ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.darkGray])
         
         
         guard let country = country else { return }
         
-        attributString.append(NSMutableAttributedString(string: country, attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.gray]))
+        attributString.append(NSMutableAttributedString(string: country, attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.darkGray]))
         lbCountryName.attributedText = attributString
     }
     
@@ -140,7 +158,9 @@ class CountryDetailsVC: UIViewController {
     
     let lbInformationUpdated: UILabel = {
         let lb = UILabel()
-        lb.text = "last update: "
+        lb.text = "last update "
+        lb.textColor = .gray
+        lb.font = .systemFont(ofSize: 16)
         return lb
     }()
     

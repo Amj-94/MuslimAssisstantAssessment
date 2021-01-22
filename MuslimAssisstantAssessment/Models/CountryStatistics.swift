@@ -12,15 +12,15 @@ struct Test: Codable {
 }
 
 struct Death: Codable {
-    let new: String
+    let new: String?
     let total: Int
 }
 
 struct Case: Codable {
-    let new : String
-    let active: Int
-    let critical: Int
-    let recovered: Int
+    let new : String?
+    let active: Int?
+    let critical: Int?
+    let recovered: Int?
     let total: Int
 }
 
