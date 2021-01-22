@@ -22,7 +22,7 @@ class CountryDetailsVC: UIViewController {
         super.viewDidLoad()
         setUpLayOut()
         fetchCountryDetails()
-    }    
+    }
     
     // MARK: -APICalls
     func fetchCountryDetails(){
@@ -173,7 +173,6 @@ class CountryDetailsVC: UIViewController {
     
     let casesCardView: StatisticCardView = {
         let vi = StatisticCardView()
-        vi.layer.cornerRadius = 10
         vi.layer.borderWidth = 0.5
         vi.layer.borderColor = UIColor.lightGray.cgColor
         return vi

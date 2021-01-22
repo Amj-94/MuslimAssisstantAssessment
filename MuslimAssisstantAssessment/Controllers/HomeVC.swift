@@ -15,6 +15,9 @@ class HomeVC: UITableViewController {
         }
     }
     
+    var backGroundColor = UIColor.white
+    var textColor = UIColor.black
+    
     var filteredCountries: [String]?
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -26,6 +29,11 @@ class HomeVC: UITableViewController {
         super.viewDidLoad()
         setUpLayOut()
         fetchCountries()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpNavigationBar()
     }
     
     // MARK: -API Calls
@@ -42,21 +50,41 @@ class HomeVC: UITableViewController {
     
     // MARK: -setUpLayOut
     func setUpLayOut() {
-        setUpNavigationBar()
+        setUpColors()
         setUpSearchController()
         setUpTableView()
     }
     
+    func setUpColors(){
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                backGroundColor = .black
+                textColor = .white
+            }
+        }
+    }
+    
     func setUpNavigationBar(){
+        
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.largeTitleTextAttributes = [.foregroundColor: textColor]
+            appearance.backgroundColor = backGroundColor
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = .gray
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = true
         navigationItem.title = "Countries"
     }
     
     func setUpTableView() {
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .white
+//        tableView.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: COUNTRY_CELLID)
         tableView.rowHeight = 60
     }
@@ -85,6 +113,8 @@ extension HomeVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: COUNTRY_CELLID, for: indexPath)
+        cell.backgroundColor = backGroundColor
+        cell.textLabel?.textColor = textColor
         cell.textLabel?.text = inSerachMode ? filteredCountries?[indexPath.row] ?? "" : countries?[indexPath.row] ?? ""
         return cell
     }
